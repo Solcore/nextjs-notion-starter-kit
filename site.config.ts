@@ -9,7 +9,7 @@ export default siteConfig({
   rootNotionSpaceId: null,
 
   // basic site info (required)
-  name: 'Next.js Notion Starter Kit',
+  name: 'Solcore ShowReel',
   domain: 'https://solcore1999.notion.site/55510c6a681040029a75a0982b94437b?v=46aa062a07e743ff861c15d91637d17c',
   author: 'Travis Fischer',
 
