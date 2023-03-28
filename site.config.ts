@@ -2,7 +2,7 @@ import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: '7875426197cf461698809def95960ebf',
+  rootNotionPageId: '55510c6a681040029a75a0982b94437b?v=46aa062a07e743ff861c15d91637d17c',
 
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
@@ -10,7 +10,7 @@ export default siteConfig({
 
   // basic site info (required)
   name: 'Next.js Notion Starter Kit',
-  domain: 'nextjs-notion-starter-kit.transitivebullsh.it',
+  domain: 'https://solcore1999.notion.site/55510c6a681040029a75a0982b94437b?v=46aa062a07e743ff861c15d91637d17c',
   author: 'Travis Fischer',
 
   // open graph metadata (optional)
