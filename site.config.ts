@@ -11,7 +11,7 @@ export default siteConfig({
   // basic site info (required)
   name: 'Solcore ShowReel',
   domain: 'https://solcore1999.notion.site/Solcore-599e8903df2f4fb5893c20833c4bb0c7',
-  author: 'Solcore',
+  author: 'Solcoree',
 
   // open graph metadata (optional)
   description: 'Example Next.js Notion Starter Kit Site',
