@@ -23,7 +23,6 @@ export const GitHubShareButton: React.FC = () => {
           top: 0,
           right: 0,
           border: 0,
-          display:'none',
           transform: 'scale(1, 1)'
         }}
         aria-hidden='true'
