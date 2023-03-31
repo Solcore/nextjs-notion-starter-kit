@@ -11,7 +11,6 @@ interface SocialLink {
   title: string
   icon: React.ReactNode
   href?: string
-  style={{ display: 'none' }}
 }
 
 const socialLinks: SocialLink[] = [
