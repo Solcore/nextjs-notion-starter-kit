@@ -217,7 +217,3 @@
 .hidden {
   visibility: hidden;
 }
-
-.githubCorner .octoArm {
-  display: none !important;
-}
