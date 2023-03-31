@@ -1,221 +1,94 @@
-/**
- * Site-wide app configuration.
- *
- * This file pulls from the root "site.config.ts" as well as environment variables
- * for optional depenencies.
- */
-import { parsePageId } from 'notion-utils'
-import { PostHogConfig } from 'posthog-js'
+import * as React from 'react'
 
-import { getEnv, getSiteConfig } from './get-config-value'
-import { NavigationLink } from './site-config'
-import {
-  NavigationStyle,
-  PageUrlOverridesInverseMap,
-  PageUrlOverridesMap,
-  Site
-} from './types'
+import cs from 'classnames'
 
-export const rootNotionPageId: string = parsePageId(
-  getSiteConfig('rootNotionPageId'),
-  { uuid: false }
-)
+import * as config from '@/lib/config'
 
-if (!rootNotionPageId) {
-  throw new Error('Config error invalid "rootNotionPageId"')
+import styles from './PageSocial.module.css'
+
+interface SocialLink {
+  name: string
+  title: string
+  icon: React.ReactNode
+  href?: string
 }
 
-// if you want to restrict pages to a single notion workspace (optional)
-export const rootNotionSpaceId: string | null = parsePageId(
-  getSiteConfig('rootNotionSpaceId', null),
-  { uuid: true }
-)
+const socialLinks: SocialLink[] = [
+  config.twitter && {
+    name: 'twitter',
+    href: `https://solcore1999.notion.site/Resume-76ccff1e3cb6431bae06d65c7c5ce651`,
+    title: `Twitter @${config.twitter}`,
+    icon: (
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <path d='M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z' />
+      </svg>
+    )
+  },
 
-export const pageUrlOverrides = cleanPageUrlMap(
-  getSiteConfig('pageUrlOverrides', {}) || {},
-  { label: 'pageUrlOverrides' }
-)
+  config.github && {
+    name: 'github',
+    href: `https://github.com/${config.github}`,
+    title: `GitHub @${config.github}`,
+    icon: (
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <path d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'></path>
+      </svg>
+    )
+  },
 
-export const pageUrlAdditions = cleanPageUrlMap(
-  getSiteConfig('pageUrlAdditions', {}) || {},
-  { label: 'pageUrlAdditions' }
-)
+  config.linkedin && {
+    name: 'linkedin',
+    href: `https://www.linkedin.com/in/${config.linkedin}`,
+    title: `LinkedIn ${config.author}`,
+    icon: (
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <path d='M6.5 21.5h-5v-13h5v13zM4 6.5C2.5 6.5 1.5 5.3 1.5 4s1-2.4 2.5-2.4c1.6 0 2.5 1 2.6 2.5 0 1.4-1 2.5-2.6 2.5zm11.5 6c-1 0-2 1-2 2v7h-5v-13h5V10s1.6-1.5 4-1.5c3 0 5 2.2 5 6.3v6.7h-5v-7c0-1-1-2-2-2z' />
+      </svg>
+    )
+  },
 
-export const inversePageUrlOverrides = invertPageUrlOverrides(pageUrlOverrides)
+  config.newsletter && {
+    name: 'newsletter',
+    href: `${config.newsletter}`,
+    title: `Newsletter ${config.author}`,
+    icon: (
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <path d='M12 .64L8.23 3H5V5L2.97 6.29C2.39 6.64 2 7.27 2 8V18C2 19.11 2.9 20 4 20H20C21.11 20 22 19.11 22 18V8C22 7.27 21.61 6.64 21.03 6.29L19 5V3H15.77M7 5H17V9.88L12 13L7 9.88M8 6V7.5H16V6M5 7.38V8.63L4 8M19 7.38L20 8L19 8.63M8 8.5V10H16V8.5Z' />
+      </svg>
+    )
+  },
 
-export const environment = process.env.NODE_ENV || 'development'
-export const isDev = environment === 'development'
-
-// general site config
-export const name: string = getSiteConfig('name')
-export const author: string = getSiteConfig('author')
-export const domain: string = getSiteConfig('domain')
-export const description: string = getSiteConfig('description', 'Notion Blog')
-export const language: string = getSiteConfig('language', 'en')
-
-// social accounts
-export const twitter: string | null = getSiteConfig('twitter', null)
-export const mastodon: string | null = getSiteConfig('mastodon', null)
-export const github: string | null = getSiteConfig('github', null)
-export const youtube: string | null = getSiteConfig('youtube', null)
-export const linkedin: string | null = getSiteConfig('linkedin', null)
-export const newsletter: string | null = getSiteConfig('newsletter', null)
-export const zhihu: string | null = getSiteConfig('zhihu', null)
-
-export const getMastodonHandle = (): string | null => {
-  if (!mastodon) {
-    return null
+  config.youtube && {
+    name: 'youtube',
+    href: `https://www.youtube.com/${config.youtube}`,
+    title: `YouTube ${config.youtube}`,
+    icon: (
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <path d='M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z' />
+      </svg>
+    )
   }
+].filter(Boolean)
 
-  // Since Mastodon is decentralized, handles include the instance domain name.
-  // e.g. @example@mastodon.social
-  const url = new URL(mastodon)
-  return `${url.pathname.slice(1)}@${url.hostname}`
-}
+export const PageSocial: React.FC = () => {
+  return (
+    <div className={styles.pageSocial}>
+      {socialLinks.map((action) => (
+        <a
+          className={cs(styles.action, styles[action.name])}
+          href={action.href}
+          key={action.name}
+          title={action.title}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <div className={styles.actionBg}>
+            <div className={styles.actionBgPane} />
+          </div>
 
-// default notion values for site-wide consistency (optional; may be overridden on a per-page basis)
-export const defaultPageIcon: string | null = getSiteConfig(
-  'defaultPageIcon',
-  null
-)
-export const defaultPageCover: string | null = getSiteConfig(
-  'defaultPageCover',
-  null
-)
-export const defaultPageCoverPosition: number = getSiteConfig(
-  'defaultPageCoverPosition',
-  0.5
-)
-
-// Optional whether or not to enable support for LQIP preview images
-export const isPreviewImageSupportEnabled: boolean = getSiteConfig(
-  'isPreviewImageSupportEnabled',
-  false
-)
-
-// Optional whether or not to include the Notion ID in page URLs or just use slugs
-export const includeNotionIdInUrls: boolean = getSiteConfig(
-  'includeNotionIdInUrls',
-  !!isDev
-)
-
-export const navigationStyle: NavigationStyle = getSiteConfig(
-  'navigationStyle',
-  'default'
-)
-
-export const navigationLinks: Array<NavigationLink | null> = getSiteConfig(
-  'navigationLinks',
-  null
-)
-
-// Optional site search
-export const isSearchEnabled: boolean = getSiteConfig('isSearchEnabled', true)
-
-// ----------------------------------------------------------------------------
-
-// Optional redis instance for persisting preview images
-export const isRedisEnabled: boolean =
-  getSiteConfig('isRedisEnabled', false) || !!getEnv('REDIS_ENABLED', null)
-
-// (if you want to enable redis, only REDIS_HOST and REDIS_PASSWORD are required)
-// we recommend that you store these in a local `.env` file
-export const redisHost: string | null = getEnv('REDIS_HOST', null)
-export const redisPassword: string | null = getEnv('REDIS_PASSWORD', null)
-export const redisUser: string = getEnv('REDIS_USER', 'default')
-export const redisUrl = getEnv(
-  'REDIS_URL',
-  `redis://${redisUser}:${redisPassword}@${redisHost}`
-)
-export const redisNamespace: string | null = getEnv(
-  'REDIS_NAMESPACE',
-  'preview-images'
-)
-
-// ----------------------------------------------------------------------------
-
-export const isServer = typeof window === 'undefined'
-
-export const port = getEnv('PORT', '3000')
-export const host = isDev ? `http://localhost:${port}` : `https://${domain}`
-export const apiHost = isDev
-  ? host
-  : `https://${process.env.VERCEL_URL || domain}`
-
-export const apiBaseUrl = `/api`
-
-export const api = {
-  searchNotion: `${apiBaseUrl}/search-notion`,
-  getNotionPageInfo: `${apiBaseUrl}/notion-page-info`,
-  getSocialImage: `${apiBaseUrl}/social-image`
-}
-
-// ----------------------------------------------------------------------------
-
-export const site: Site = {
-  domain,
-  name,
-  rootNotionPageId,
-  rootNotionSpaceId,
-  description
-}
-
-export const fathomId = isDev ? null : process.env.NEXT_PUBLIC_FATHOM_ID
-export const fathomConfig = fathomId
-  ? {
-      excludedDomains: ['localhost', 'localhost:3000']
-    }
-  : undefined
-
-export const posthogId = process.env.NEXT_PUBLIC_POSTHOG_ID
-export const posthogConfig: Partial<PostHogConfig> = {
-  api_host: 'https://app.posthog.com'
-}
-
-function cleanPageUrlMap(
-  pageUrlMap: PageUrlOverridesMap,
-  {
-    label
-  }: {
-    label: string
-  }
-): PageUrlOverridesMap {
-  return Object.keys(pageUrlMap).reduce((acc, uri) => {
-    const pageId = pageUrlMap[uri]
-    const uuid = parsePageId(pageId, { uuid: false })
-
-    if (!uuid) {
-      throw new Error(`Invalid ${label} page id "${pageId}"`)
-    }
-
-    if (!uri) {
-      throw new Error(`Missing ${label} value for page "${pageId}"`)
-    }
-
-    if (!uri.startsWith('/')) {
-      throw new Error(
-        `Invalid ${label} value for page "${pageId}": value "${uri}" should be a relative URI that starts with "/"`
-      )
-    }
-
-    const path = uri.slice(1)
-
-    return {
-      ...acc,
-      [path]: uuid
-    }
-  }, {})
-}
-
-function invertPageUrlOverrides(
-  pageUrlOverrides: PageUrlOverridesMap
-): PageUrlOverridesInverseMap {
-  return Object.keys(pageUrlOverrides).reduce((acc, uri) => {
-    const pageId = pageUrlOverrides[uri]
-
-    return {
-      ...acc,
-      [pageId]: uri
-    }
-  }, {})
+          <div className={styles.actionBg}>{action.icon}</div>
+        </a>
+      ))}
+    </div>
+  )
 }
