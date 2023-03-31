@@ -16,7 +16,7 @@ interface SocialLink {
 const socialLinks: SocialLink[] = [
   config.twitter && {
     name: 'twitter',
-    href: `https://twitter.com/${config.twitter}`,
+    href: `https://solcore1999.notion.site/Resume-76ccff1e3cb6431bae06d65c7c5ce651`,
     title: `Twitter @${config.twitter}`,
     icon: (
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
