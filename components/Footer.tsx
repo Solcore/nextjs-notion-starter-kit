@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText'
-import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
-import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
+import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare'
+import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope'
 import { FaMastodon } from '@react-icons/all-files/fa/FaMastodon'
-import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
+import { FaUser } from '@react-icons/all-files/fa/FaUser'
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
 import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
@@ -55,12 +55,12 @@ export const FooterImpl: React.FC = () => {
         {config.twitter && (
           <a
             className={styles.twitter}
-            href={`https://twitter.com/${config.twitter}`}
-            title={`Twitter @${config.twitter}`}
+            href={`https://solcore1999.notion.site/Resume-76ccff1e3cb6431bae06d65c7c5ce651`}
+            title={`Resume Liangengyang`}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaTwitter />
+            <FaUser />
           </a>
         )}
 
@@ -90,24 +90,24 @@ export const FooterImpl: React.FC = () => {
         {config.github && (
           <a
             className={styles.github}
-            href={`https://github.com/${config.github}`}
-            title={`GitHub @${config.github}`}
+            href={`https://www.instagram.com/Solcore01/`}
+            title={`Instagram Solcore01`}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaGithub />
+            <FaInstagramSquare />
           </a>
         )}
 
         {config.linkedin && (
           <a
             className={styles.linkedin}
-            href={`https://www.linkedin.com/in/${config.linkedin}`}
-            title={`LinkedIn ${config.author}`}
+            href={`mailto:liangengyangexc@qq.com`}
+            title={`Email Liangengyang`}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaLinkedin />
+            <FaEnvelope />
           </a>
         )}
 
