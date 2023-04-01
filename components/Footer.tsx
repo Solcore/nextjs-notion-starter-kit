@@ -4,7 +4,7 @@ import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText
 import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram'
 import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope'
 import { FaMastodon } from '@react-icons/all-files/fa/FaMastodon'
-import { FaUser } from '@react-icons/all-files/fa/FaUser'
+import { FaUserAlt } from '@react-icons/all-files/fa/FaUserAlt'
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
 import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
@@ -60,7 +60,7 @@ export const FooterImpl: React.FC = () => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaUser />
+            <FaUserAlt />
           </a>
         )}
 
