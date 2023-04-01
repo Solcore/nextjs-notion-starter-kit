@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText'
-import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare'
+import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram'
 import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope'
 import { FaMastodon } from '@react-icons/all-files/fa/FaMastodon'
 import { FaUser } from '@react-icons/all-files/fa/FaUser'
@@ -95,7 +95,7 @@ export const FooterImpl: React.FC = () => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaInstagramSquare />
+            <FaInstagram />
           </a>
         )}
 
