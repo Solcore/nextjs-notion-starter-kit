@@ -1,15 +1,5 @@
 import * as React from 'react'
 
-import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText'
-import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
-import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
-import { FaMastodon } from '@react-icons/all-files/fa/FaMastodon'
-import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
-import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
-import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
-import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
-import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
-
 import * as config from '@/lib/config'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
@@ -63,9 +53,6 @@ export const FooterImpl: React.FC = () => {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" fill="5f5d59"></path>
               </svg>
-             >
-            <FaTwitter />
-          </a>
         )}
 
         {config.mastodon && (
@@ -74,9 +61,6 @@ export const FooterImpl: React.FC = () => {
             href={config.mastodon}
             title={`Mastodon ${config.getMastodonHandle()}`}
             rel='me'
-          >
-            <FaMastodon />
-          </a>
         )}
 
         {config.zhihu && (
@@ -86,9 +70,6 @@ export const FooterImpl: React.FC = () => {
             title={`Zhihu @${config.zhihu}`}
             target='_blank'
             rel='noopener noreferrer'
-          >
-            <FaZhihu />
-          </a>
         )}
 
         {config.github && (
@@ -102,9 +83,6 @@ export const FooterImpl: React.FC = () => {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
                 <path d="M62.947657 63.404052 62.947657 63.404052 62.947657 63.404052 62.947657 63.404052zM793.183054 543.821753c0 137.970328-111.877043 249.816672-249.816672 249.816672-137.970328 0-249.817696-111.846344-249.817696-249.816672 0-16.425088 1.62194-32.487925 4.714372-48.042179L130.206504 495.779573l0 332.058768c0 71.281463 57.740052 129.142266 129.142266 129.142266l568.034201 0c71.281463 0 129.142266-57.800427 129.142266-129.142266L956.525236 495.780597l-167.996179 0C791.562137 511.333828 793.183054 527.397688 793.183054 543.821753L793.183054 543.821753 793.183054 543.821753zM827.38297 130.661875 259.34877 130.661875c-71.342862 0-129.142266 57.830103-129.142266 129.143289L130.206504 399.696238l209.16174 0c45.218878-63.895239 119.713522-105.692181 203.998137-105.692181 84.282568 0 158.778236 41.796942 203.997114 105.692181l209.162764 0L956.526259 259.805164C956.525236 188.522678 898.694109 130.661875 827.38297 130.661875L827.38297 130.661875zM890.556779 290.161542c0 12.730952-10.387581 23.060205-23.059182 23.060205L798.377356 313.221748c-12.671601 0-23.060205-10.389628-23.060205-23.060205l0-69.180616c0-12.730952 10.419304-23.060205 23.060205-23.060205l69.12024 0c12.730952 0 23.059182 10.389628 23.059182 23.060205L890.556779 290.161542 890.556779 290.161542 890.556779 290.161542zM697.098695 543.821753c0-84.943624-68.849064-153.73436-153.733337-153.73436-84.883249 0-153.73436 68.790736-153.73436 153.73436s68.850088 153.733337 153.73436 153.733337C628.249631 697.55509 697.098695 628.7664 697.098695 543.821753L697.098695 543.821753 697.098695 543.821753z" fill="5f5d59"></path>
               </svg>
-             >
-            <FaGithub />
-          </a>
         )}
 
         {config.linkedin && (
@@ -119,9 +97,6 @@ export const FooterImpl: React.FC = () => {
                 <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"></path>
                 <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"></path>
               </svg>
-            >
-            <FaLinkedin />
-          </a>
         )}
 
         {config.newsletter && (
@@ -131,9 +106,6 @@ export const FooterImpl: React.FC = () => {
             title={`Newsletter ${config.author}`}
             target='_blank'
             rel='noopener noreferrer'
-          >
-            <FaEnvelopeOpenText />
-          </a>
         )}
 
         {config.youtube && (
@@ -143,9 +115,6 @@ export const FooterImpl: React.FC = () => {
             title={`YouTube ${config.author}`}
             target='_blank'
             rel='noopener noreferrer'
-          >
-            <FaYoutube />
-          </a>
         )}
       </div>
     </footer>
