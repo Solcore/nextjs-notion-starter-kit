@@ -14,7 +14,7 @@ interface SocialLink {
 }
 
 const socialLinks: SocialLink[] = [
-  config.Resume && {
+  config.twitter && {
     name: 'Resume',
     href: `https://solcore1999.notion.site/Resume-76ccff1e3cb6431bae06d65c7c5ce651`,
     title: `Resume Liangengyang`,
