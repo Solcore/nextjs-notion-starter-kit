@@ -35,7 +35,7 @@ export const FooterImpl: React.FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.copyright}>Copyright 2022 {config.author}</div>
+      <div className={styles.copyright}>Copyright 2023 {config.author}</div>
 
       <div className={styles.settings}>
         {hasMounted && (
@@ -55,8 +55,8 @@ export const FooterImpl: React.FC = () => {
         {config.twitter && (
           <a
             className={styles.twitter}
-            href={`https://twitter.com/${config.twitter}`}
-            title={`Twitter @${config.twitter}`}
+            href={`https://solcore1999.notion.site/Resume-76ccff1e3cb6431bae06d65c7c5ce651`}
+            title={`Resume Liangengyang`}
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -90,8 +90,8 @@ export const FooterImpl: React.FC = () => {
         {config.github && (
           <a
             className={styles.github}
-            href={`https://github.com/${config.github}`}
-            title={`GitHub @${config.github}`}
+            href={`https://www.instagram.com/Solcore01/`}
+            title={`Instagram Solcore01`}
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -102,8 +102,8 @@ export const FooterImpl: React.FC = () => {
         {config.linkedin && (
           <a
             className={styles.linkedin}
-            href={`https://www.linkedin.com/in/${config.linkedin}`}
-            title={`LinkedIn ${config.author}`}
+            href={`mailto:liangengyangexc@qq.com`}
+            title={`Email Liangengyang`}
             target='_blank'
             rel='noopener noreferrer'
           >
